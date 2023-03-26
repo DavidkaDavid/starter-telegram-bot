@@ -11,9 +11,6 @@ const bot = new Bot(process.env.TELEGRAM_TOKEN || "");
 // Handle the /yo command to greet the user
 bot.command("yo", (ctx) => ctx.reply(`Yo ${ctx.from?.username}`));
 
-// Handle the /rave command to greet the user
-bot.command("rave", (ctx) => ctx.reply(`www.Yo.com`));
-
 // Handle the /effect command to apply text effects using an inline keyboard
 type Effect = { code: TextEffectVariant; label: string };
 const allEffects: Effect[] = [
@@ -156,14 +153,13 @@ for (const effect of allEffects) {
 
 // Handle the /about command
 const aboutUrlKeyboard = new InlineKeyboard().url(
-  "Copiright by David",
+  "Host your own bot for free.",
   "https://cyclic.sh/"
 );
 
 // Suggest commands in the menu
 bot.api.setMyCommands([
   { command: "yo", description: "Be greeted by the bot" },
-  { command: "rave", description: "Redirect to url" },
   {
     command: "effect",
     description: "Apply text effects on the text. (usage: /effect [text])",
@@ -177,8 +173,7 @@ I'm powered by Cyclic, the next-generation serverless computing platform.
 <b>Commands</b>
 /yo - Be greeted by me
 /effect [text] - Show a keyboard to apply text effects to [text]`;
-/rave - open
-  
+
 const replyWithIntro = (ctx: any) =>
   ctx.reply(introductionMessage, {
     reply_markup: aboutUrlKeyboard,
